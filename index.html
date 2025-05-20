@@ -22,7 +22,7 @@
 </style>
 </head>
 <body>
-<audio autoplay loop preload="auto" style="display:none;">
+<audio id="bg-music" loop preload="auto" style="display:none;">
   <source src="love.mp3" type="audio/mp3" />
 </audio>
 <div id="main">
@@ -113,6 +113,12 @@
                 canvas.unbind("click");
                 canvas.unbind("mousemove");
                 canvas.removeClass('hand');
+                var audio = document.getElementById('bg-music');
+                if(audio) {
+                    audio.play().catch(function(err){
+                        console.log("音乐播放失败:", err);
+                    });
+                }
             }
         }).mousemove(function(e){
             var offset = canvas.offset(), x, y;
